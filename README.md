@@ -21,7 +21,7 @@ Uma implantação para esta arquitetura de referência está disponível no [Git
 4. Instale o [Databricks CLI](https://docs.databricks.com/user-guide/dev-tools/databricks-cli.html).
 
 5. A partir de um prompt de comando, prompt bash ou prompt PowerShell, inicie sessão na sua conta Azure da seguinte forma:
-```shell
+shell
     az login
     ```
 6. Instale um IDE Java com os seguintes recursos:
