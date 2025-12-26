@@ -51,8 +51,7 @@ shell
             trip_data_2.zip
             trip_data_3.zip
             ...
-    ```
-
+```
 5. Abra um navegador da Web e aceda a https://www.zillow.com/howto/api/neighborhood-boundaries.htm.
 
 6. Clique em **New York Neighborhood Boundaries** para descarregar o ficheiro.
