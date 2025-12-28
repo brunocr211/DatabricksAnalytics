@@ -16,7 +16,7 @@ Uma implantação para esta arquitetura de referência está disponível no [Git
 
 2. Instale o [Docker](https://www.docker.com/) para executar o gerador de dados.
 
-3. Instale o [Azure CLI 2.0](/cli/azure/install-azure-cli?view=azure-cli
+3. Instale o [Azure CLI 2.0](/cli/azure/install-azure-cli?view=azure-cli.
 
 4. Instale o [Databricks CLI](https://docs.databricks.com/user-guide/dev-tools/databricks-cli.html).
 
