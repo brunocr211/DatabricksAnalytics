@@ -55,3 +55,43 @@ shell
 5. Abra um navegador da Web e aceda a https://www.zillow.com/howto/api/neighborhood-boundaries.htm.
 
 6. Clique em **New York Neighborhood Boundaries** para descarregar o ficheiro.
+
+7. Copie o ficheiro **ZillowNeighborhoods-NY.zip** da pasta **downloads** do seu navegador para a pasta `DataFile`.
+
+### Implemente os recursos do Azure
+
+1. A partir de um shell ou do Prompt de Comando do Windows, execute o seguinte comando e siga as instruções de início de sessão:
+
+```bash
+    az login
+```
+
+2. Navegue até a pasta chamada `azure` no repositório GitHub:
+
+```bash
+    cd azure
+```
+
+3. Execute os seguintes comandos para implementar os recursos do Azure:
+
+```bash
+    export resourceGroup=‘[Nome do grupo de recursos]’
+    export resourceLocation='[Região]'
+    export eventHubNamespace=‘[Nome do namespace do Event Hubs]’
+    export databricksWorkspaceName=‘[Nome do espaço de trabalho do Azure Databricks]’
+    export cosmosDatabaseAccount=‘[Nome do banco de dados do Cosmos DB]’
+    export logAnalyticsWorkspaceName=‘[Nome do espaço de trabalho do Log Analytics]’
+    export logAnalyticsWorkspaceRegion='[Região do Log Analytics]'
+
+# Criar um grupo de recursos
+    az group create --name $resourceGroup --location $resourceLocation
+
+# Implantar recursos
+    az group deployment create --resource-group $resourceGroup \
+        --template-file deployresources.json --parameters \
+	    eventHubNamespace=$eventHubNamespace \
+        databricksWorkspaceName=$databricksWorkspaceName \
+        cosmosDatabaseAccount=$cosmosDatabaseAccount \
+        logAnalyticsWorkspaceName=$logAnalyticsWorkspaceName \
+        logAnalyticsWorkspaceRegion=$logAnalyticsWorkspaceRegion
+```
