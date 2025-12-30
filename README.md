@@ -95,3 +95,40 @@ shell
         logAnalyticsWorkspaceName=$logAnalyticsWorkspaceName \
         logAnalyticsWorkspaceRegion=$logAnalyticsWorkspaceRegion
 ```
+4. A saída da implementação é gravada na consola assim que concluída. Procure na saída o seguinte JSON:
+
+```JSON
+“outputs”: {
+        “cosmosDb”: {
+          “type”: “Object”,
+          “value”: {
+            “hostName”: <valor>,
+            “secret”: <valor>,
+            “username”: <valor>
+          }
+        },
+        “eventHubs”: {
+          “type”: “Object”,
+          “value”: {
+            “taxi-fare-eh”: <valor>,
+            “taxi-ride-eh”: <valor>
+          }
+        },
+        “logAnalytics”: {
+          “type”: “Object”,
+          “value”: {
+            “secret”: <valor>,
+            “workspaceId”: <valor>
+          }
+        }
+},
+```
+Esses valores são os segredos que serão adicionados aos segredos do Databricks nas próximas secções. Mantenha-os em segurança até adicioná-los nessas secções.
+
+### Adicionar uma tabela Cassandra à conta Cosmos DB
+
+1. No portal do Azure, navegue até ao grupo de recursos criado na secção **implantar os recursos do Azure** acima. Clique em **Conta Cosmos DB do Azure**. Crie uma tabela com a API Cassandra.
+
+2. Na guia **Visão geral**, clique em **Adicionar tabela**.
+
+3. Quando a guia **Adicionar tabela** for aberta, insira `newyorktaxi` na caixa de texto **Nome do espaço de chaves**. 
