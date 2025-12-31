@@ -132,3 +132,53 @@ Esses valores são os segredos que serão adicionados aos segredos do Databricks
 2. Na guia **Visão geral**, clique em **Adicionar tabela**.
 
 3. Quando a guia **Adicionar tabela** for aberta, insira `newyorktaxi` na caixa de texto **Nome do espaço de chaves**. 
+
+
+4. Na secção **introduzir comando CQL para criar a tabela**, introduza `neighborhoodstats` na caixa de texto ao lado de `newyorktaxi`.
+
+5. Na caixa de texto abaixo, introduza o seguinte:
+```shell
+(neighborhood text, window_end timestamp, number_of_rides bigint,total_fare_amount double, primary key(neighborhood, window_end))
+```
+6. Na caixa de texto **Throughput (1.000 - 1.000.000 RU/s)**, insira o valor `4000`.
+
+7. Clique em **OK**.
+
+### Adicione os segredos do Databricks usando a CLI do Databricks
+
+Primeiro, insira os segredos para o EventHub:
+
+1. Usando a **CLI do Azure Databricks** instalada na etapa 2 dos pré-requisitos, crie o escopo secreto do Azure Databricks:
+```shell
+    databricks secrets create-scope --scope “azure-databricks-job”
+ ```
+2. Adicione o segredo para o EventHub de viagem de táxi:
+```shell
+    databricks secrets put --scope “azure-databricks-job” --key “taxi-ride”
+ ```
+Uma vez executado, este comando abre o editor vi. Introduza o valor **taxi-ride-eh** da secção de saída **eventHubs** na etapa 4 da secção *implantar os recursos do Azure*. Guarde e saia do vi.
+
+3. Adicione o segredo para o EventHub da tarifa de táxi:
+```shell
+    databricks secrets put --scope “azure-databricks-job” --key “taxi-fare”
+```
+    Depois de executado, este comando abre o editor vi. Introduza o valor **taxi-fare-eh** da secção de saída **eventHubs** no passo 4 da secção *implantar os recursos do Azure*. Guarde e saia do vi.
+
+Em seguida, introduza os segredos para o Cosmos DB:
+
+1. Abra o portal do Azure e navegue até ao grupo de recursos especificado no passo 3 da secção **implantar os recursos do Azure**. Clique na conta do Azure Cosmos DB.
+
+2. Usando a **CLI do Azure Databricks**, adicione o segredo para o nome de utilizador do Cosmos DB:
+```shell
+    databricks secrets put --scope azure-databricks-job --key “cassandra-username”
+```
+Depois de executado, este comando abre o editor vi. Insira o valor do **nome de utilizador** da secção de saída **CosmosDb** na etapa 4 da secção *implantar os recursos do Azure*. Guarde e saia do vi.
+
+3. Em seguida, adicione o segredo para a palavra-passe do Cosmos DB:
+```shell
+    databricks secrets put --scope azure-databricks-job --key “cassandra-password”
+```
+
+Depois de executado, este comando abre o editor vi. Introduza o valor **secret** da secção de saída **CosmosDb** no passo 4 da secção *implantar os recursos do Azure*. Guarde e saia do vi.
+
+> [!NOTA]
