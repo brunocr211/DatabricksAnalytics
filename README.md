@@ -14,7 +14,7 @@ Uma implantação para esta arquitetura de referência está disponível no [Git
 
 1. Clone, faça um fork ou transfira este repositório GitHub.
 
-2. Instale o [Docker](https://www.docker.com/) para executar o gerador de dados.
+2. Instale o [Docker](https://www.docker.com/) para executar o gerador de dados
 
 3. Instale o [Azure CLI 2.0](/cli/azure/install-azure-cli?view=azure-cli.
 
