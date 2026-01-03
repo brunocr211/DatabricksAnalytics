@@ -182,3 +182,52 @@ Depois de executado, este comando abre o editor vi. Insira o valor do **nome de 
 Depois de executado, este comando abre o editor vi. Introduza o valor **secret** da secção de saída **CosmosDb** no passo 4 da secção *implantar os recursos do Azure*. Guarde e saia do vi.
 
 > [!NOTA]
+
+> Se estiver a utilizar um [escopo secreto suportado pelo Azure Key Vault](https://docs.azuredatabricks.net/user-guide/secrets/secret-scopes.html#azure-key-vault-backed-scopes), o escopo deve ser nomeado **azure-databricks-job** e os segredos devem ter exatamente os mesmos nomes que os acima.
+
+### Adicione o ficheiro de dados Zillow Neighborhoods ao sistema de ficheiros Databricks
+
+1. Crie um diretório no sistema de ficheiros Databricks:
+```bash
+    dbfs mkdirs dbfs:/azure-databricks-jobs
+    ```
+
+2. Navegue até o diretório `DataFile` e insira o seguinte:
+```bash
+    dbfs cp ZillowNeighborhoods-NY.zip dbfs:/azure-databricks-jobs
+ ```
+
+### Adicione o ID da área de trabalho do Azure Log Analytics e a chave primária aos ficheiros de configuração
+
+Para esta secção, necessita do ID da área de trabalho do Log Analytics e da chave primária. O ID da área de trabalho é o valor **workspaceId** da secção de saída **logAnalytics** na etapa 4 da secção *implantar os recursos do Azure*. A chave primária é o **secret** da secção de saída. 
+
+1. Para configurar o registo log4j, abra `\azure\AzureDataBricksJob\src\main\resources\com\microsoft\pnp\azuredatabricksjob\log4j.properties`. Edite os dois valores seguintes:
+```shell
+    log4j.appender.A1.workspaceId=<ID do espaço de trabalho do Log Analytics>
+    log4j.appender.A1.secret=<Chave primária do Log Analytics>
+ ```
+
+2. Para configurar o registo personalizado, abra `\azure\azure-databricks-monitoring\scripts\metrics.properties`. Edite os dois valores seguintes:
+```shell
+    *.sink.loganalytics.workspaceId=<ID do espaço de trabalho do Log Analytics>
+    *.sink.loganalytics.secret=<Chave primária do Log Analytics>
+ ```
+
+### Crie os ficheiros .jar para a tarefa Databricks e o monitoramento Databricks
+
+1. Use o seu IDE Java para importar o ficheiro de projeto Maven chamado **pom.xml** localizado no diretório raiz. 
+
+2. Realize uma compilação limpa. O resultado dessa compilação são os ficheiros denominados **azure-databricks-job-1.0-SNAPSHOT.jar** e **azure-databricks-monitoring-0.9.jar**. 
+
+### Configure o registo personalizado para a tarefa Databricks
+
+1. Copie o ficheiro **azure-databricks-monitoring-0.9.jar** para o sistema de ficheiros Databricks, introduzindo o seguinte comando na **CLI Databricks**:
+```shell
+    databricks fs cp --overwrite azure-databricks-monitoring-0.9.jar dbfs:/azure-databricks-job/azure-databricks-monitoring-0.9.jar
+ ```
+
+2. Copie as propriedades de registo personalizadas de `\azure\azure-databricks-monitoring\scripts\metrics.properties` para o sistema de ficheiros Databricks, introduzindo o seguinte comando:
+```shell
+    databricks fs cp --overwrite metrics.properties dbfs:/azure-databricks-job/metrics.properties
+```
+
