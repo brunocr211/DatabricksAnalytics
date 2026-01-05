@@ -231,3 +231,50 @@ Para esta secção, necessita do ID da área de trabalho do Log Analytics e da c
     databricks fs cp --overwrite metrics.properties dbfs:/azure-databricks-job/metrics.properties
 ```
 
+3. Se ainda não decidiu um nome para o seu cluster Databricks, selecione um agora. Introduza o nome abaixo no caminho do sistema de ficheiros Databricks para o seu cluster. Copie o script de inicialização de `\azure\azure-databricks-monitoring\scripts\spark.metrics` para o sistema de ficheiros Databricks, introduzindo o seguinte comando:
+```
+    databricks fs cp --overwrite spark-metrics.sh dbfs:/databricks/init/<cluster-name>/spark-metrics.sh
+  ```
+### Criar um cluster Databricks
+
+1. No espaço de trabalho Databricks, clique em «Clusters» e, em seguida, clique em «criar cluster». Introduza o nome do cluster que criou no passo 3 da secção **configurar registo personalizado para a tarefa Databricks** acima.
+
+2. Selecione um modo de cluster **padrão**.
+
+3. Defina a **versão do tempo de execução do Databricks** como **4.3 (inclui Apache Spark 2.3.1, Scala 2.11)**.
+
+4. Defina a **versão do Python** como **2**.
+
+5. Defina o **tipo de controlador** como **igual ao trabalhador**.
+
+6. Defina **Tipo de trabalhador** como **Standard_DS3_v2**.
+
+7. Defina **Mínimo de trabalhadores** como **2**.
+
+8. Desmarque **Ativar dimensionamento automático**. 
+
+9. Abaixo da caixa de diálogo **Encerramento automático**, clique em **Scripts de inicialização**. 
+
+10. Introduza **dbfs:/databricks/init/<cluster-name>/spark-metrics.sh**, substituindo o nome do cluster criado no passo 1 por <cluster-name>.
+
+11. Clique no botão **Adicionar**.
+
+12. Clique no botão **Criar cluster**.
+
+### Criar uma tarefa no Databricks
+
+1. No espaço de trabalho do Databricks, clique em «Tarefas» e «Criar tarefa».
+
+2. Introduza um nome para a tarefa.
+
+3. Clique em “definir jar” para abrir a caixa de diálogo “Carregar JAR para executar”.
+
+4. Arraste o ficheiro **azure-databricks-job-1.0-SNAPSHOT.jar** que criou na secção **compilar o .jar para a tarefa do Databricks** para a caixa **Solte o JAR aqui para carregar**.
+
+5. Insira **com.microsoft.pnp.TaxiCabReader** no campo **Main Class**.
+
+6. No campo de argumentos, insira o seguinte:
+```shell
+    -n jar:file:/dbfs/azure-databricks-jobs/ZillowNeighborhoods-NY.zip!/ ZillowNeighborhoods-NY.shp --taxi-ride-consumer-group taxi-ride-eh-cg --taxi-fare-consumer-group taxi-fare-eh-cg --window-interval “1 minute” --cassandra-host <Nome do host Cassandra do Cosmos DB acima> 
+ ``` 
+
