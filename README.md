@@ -8,7 +8,7 @@ Esta arquitetura de referência mostra um pipeline completo de [processamento de
 
 ## Implante a solução
 
-Uma implantação para esta arquitetura de referência está disponível no [GitHub](https://github.com/mspnp/azure-databricks-streaming-analytics)
+Uma implantação para esta arquitetura de referência está disponível no [GitHub](https://github.com/mspnp/azure-databricks-streaming-analytics).
 
 ### Pré-requisitos
 
