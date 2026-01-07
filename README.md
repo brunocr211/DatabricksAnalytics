@@ -277,4 +277,32 @@ Para esta secção, necessita do ID da área de trabalho do Log Analytics e da c
 ```shell
     -n jar:file:/dbfs/azure-databricks-jobs/ZillowNeighborhoods-NY.zip!/ ZillowNeighborhoods-NY.shp --taxi-ride-consumer-group taxi-ride-eh-cg --taxi-fare-consumer-group taxi-fare-eh-cg --window-interval “1 minute” --cassandra-host <Nome do host Cassandra do Cosmos DB acima> 
  ``` 
+7. Instale as bibliotecas dependentes seguindo estas etapas:
+    
+    1. Na interface do utilizador do Databricks, clique no botão **home**.
+    
+    2. No menu suspenso **Utilizadores**, clique no nome da sua conta de utilizador para abrir as configurações do espaço de trabalho da sua conta.
+    
+    3. Clique na seta do menu suspenso ao lado do nome da sua conta, clique em **criar** e clique em **Biblioteca** para abrir a caixa de diálogo **Nova biblioteca**.
+    
+    4. No controle suspenso **Fonte**, selecione **Coordenada Maven**.
+    
+    5. Sob o título **Instalar artefactos Maven**, introduza `com.microsoft.azure:azure-eventhubs-spark_2.11:2.3.5` na caixa de texto **Coordenadas**. 
+    
+    6. Clique em **Criar biblioteca** para abrir a janela **Artefactos**.
+    
+    7. Em **Status em clusters em execução**, marque a caixa de seleção **Anexar automaticamente a todos os clusters**.
+    
+    8. Repita as etapas 1 a 7 para a coordenada Maven `com.microsoft.azure.cosmosdb:azure-cosmos-cassandra-spark-helper:1.0.0`.
+    
+    9. Repita as etapas 1 a 6 para a coordenada Maven `org.geotools:gt-shapefile:19.2`.
+    
+    10. Clique em **Opções avançadas**.
+    
+    11. Insira `http://download.osgeo.org/webdav/geotools/` na caixa de texto **Repositório**. 
+    
+    12. Clique em **Criar biblioteca** para abrir a janela **Artefactos**. 
+    
+    13. Em **Estado nos clusters em execução**, marque a caixa de seleção **Anexar automaticamente a todos os clusters**.
 
+8. Adicione as bibliotecas dependentes adicionadas na etapa 7 ao trabalho criado no final da etapa 6:
