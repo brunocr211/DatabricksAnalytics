@@ -306,3 +306,34 @@ Para esta secção, necessita do ID da área de trabalho do Log Analytics e da c
     13. Em **Estado nos clusters em execução**, marque a caixa de seleção **Anexar automaticamente a todos os clusters**.
 
 8. Adicione as bibliotecas dependentes adicionadas na etapa 7 ao trabalho criado no final da etapa 6:
+ 1. Na área de trabalho do Azure Databricks, clique em **Jobs**.
+
+2. Clique no nome do trabalho criado na etapa 2 da secção **criar um trabalho do Databricks**. 
+
+3. Ao lado da secção **Bibliotecas dependentes**, clique em **Adicionar** para abrir a caixa de diálogo **Adicionar biblioteca dependente**. 
+    
+    4. Em **Biblioteca de**, selecione **Espaço de trabalho**.
+    
+    5. Clique em **usuários**, depois no seu nome de utilizador e, em seguida, clique em `azure-eventhubs-spark_2.11:2.3.5`. 
+    
+    6. Clique em **OK**.
+    
+    7. Repita as etapas 1 a 6 para `spark-cassandra-connector_2.11:2.3.1` e `gt-shapefile:19.2`.
+
+9. Ao lado de **Cluster:**, clique em **Editar**. Isso abre a caixa de diálogo **Configurar cluster**. No menu suspenso **Tipo de cluster**, selecione **Cluster existente**. No menu suspenso **Selecionar cluster**, selecione o cluster criado na secção **criar um cluster Databricks**. Clique em **confirmar**.
+
+10. Clique em **executar agora**.
+
+### Executar o gerador de dados
+
+1. Navegue até ao diretório chamado `onprem` no repositório GitHub.
+
+2. Atualize os valores no ficheiro **main.env** da seguinte forma:
+
+```shell
+    RIDE_EVENT_HUB=[Cadeia de ligação para o hub de eventos de viagens de táxi]
+    FARE_EVENT_HUB=[Cadeia de conexão para o hub de eventos de tarifa de táxi]
+    RIDE_DATA_FILE_PATH=/DataFile/FOIL2013
+    MINUTES_TO_LEAD=0
+    PUSH_RIDE_DATA_FIRST=false
+```
