@@ -337,3 +337,23 @@ Para esta secção, necessita do ID da área de trabalho do Log Analytics e da c
     MINUTES_TO_LEAD=0
     PUSH_RIDE_DATA_FIRST=false
 ```
+ A cadeia de ligação para o hub de eventos taxi-ride é o valor **taxi-ride-eh** da secção de saída **eventHubs** na etapa 4 da secção *implantar os recursos do Azure*. A cadeia de ligação para o hub de eventos taxi-fare é o valor **taxi-fare-eh** da secção de saída **eventHubs** na etapa 4 da secção *implantar os recursos do Azure*.
+
+3. Execute o seguinte comando para criar a imagem do Docker.
+
+```bash
+    docker build --no-cache -t dataloader .
+ ```
+
+4. Navegue de volta para o diretório pai.
+
+```bash
+    cd ..
+ ```
+
+5. Execute o seguinte comando para executar a imagem do Docker.
+
+```bash
+    docker run -v `pwd`/DataFile:/DataFile --env-file=onprem/main.env dataloader:latest
+```
+
