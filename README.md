@@ -357,3 +357,17 @@ Para esta secção, necessita do ID da área de trabalho do Log Analytics e da c
     docker run -v `pwd`/DataFile:/DataFile --env-file=onprem/main.env dataloader:latest
 ```
 
+A saída deve ser semelhante à seguinte:
+
+```
+Criados 10.000 registos para TaxiFare
+Criados 10.000 registos para TaxiRide
+Criados 20.000 registos para TaxiFare
+Criados 20.000 registos para TaxiRide
+Criados 30.000 registos para TaxiFare...
+
+```
+
+Para verificar se a tarefa do Databricks está a ser executada corretamente, abra o portal do Azure e navegue até ao banco de dados Cosmos DB. Abra a guia **Data Explorer** e examine os dados na tabela **taxi records**.  
+
+[1] <span id="note1">Donovan, Brian; Work, Dan (2016): New York City Taxi Trip Data (2010-2013). Universidade de Illinois em Urbana-Champaign. https://doi.org/10.13012/J8PN93H8
