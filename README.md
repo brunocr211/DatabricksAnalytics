@@ -4,7 +4,7 @@ Esta arquitetura de referência mostra um pipeline completo de [processamento de
 
 ![](https://github.com/mspnp/architecture-center/blob/master/docs/reference-architectures/data/images/stream-processing-databricks.png)
 
-**Cenário**: Uma empresa de táxis recolhe dados sobre cada viagem de táxi. Para este cenário, assumimos que existem dois dispositivos separados a enviar dados. O táxi tem um taxímetro que envia informações sobre cada viagem — a duração, a distância e os locais de embarque e desembarque. Um dispositivo separado aceita pagamentos dos clientes e envia dados sobre as tarifas. Para identificar tendências de passageiros, a empresa de táxis deseja calcular a gorjeta média por quilómetro percorrido, em tempo real, para cada bairro
+**Cenário**: Uma empresa de táxis recolhe dados sobre cada viagem de táxi. Para este cenário, assumimos que existem dois dispositivos separados a enviar dados. O táxi tem um taxímetro que envia informações sobre cada viagem — a duração, a distância e os locais de embarque e desembarque. Um dispositivo separado aceita pagamentos dos clientes e envia dados sobre as tarifas. Para identificar tendências de passageiros, a empresa de táxis deseja calcular a gorjeta média por quilómetro percorrido, em tempo real, para cada bairro.
 
 ## Implante a solução
 
