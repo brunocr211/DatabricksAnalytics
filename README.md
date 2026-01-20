@@ -183,7 +183,7 @@ Depois de executado, este comando abre o editor vi. Introduza o valor **secret**
 
 > [!NOTA]
 
-> Se estiver a utilizar um [escopo secreto suportado pelo Azure Key Vault](https://docs.azuredatabricks.net/user-guide/secrets/secret-scopes.html#azure-key-vault-backed-scopes), o escopo deve ser nomeado **azure-databricks-job** e os segredos devem ter exatamente os mesmos nomes que os acima
+> Se estiver a utilizar um [escopo secreto suportado pelo Azure Key Vault](https://docs.azuredatabricks.net/user-guide/secrets/secret-scopes.html#azure-key-vault-backed-scopes), o escopo deve ser nomeado **azure-databricks-job** e os segredos devem ter exatamente os mesmos nomes que os acima.
 
 ### Adicione o ficheiro de dados Zillow Neighborhoods ao sistema de ficheiros Databricks
 
