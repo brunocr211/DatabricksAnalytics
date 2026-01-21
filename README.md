@@ -40,7 +40,7 @@ shell
 4. Extraia o ficheiro zip para o diretório `DataFile`.
 
     > [!NOTA]
-    > Este ficheiro zip contém outros ficheiros zip. Não extraia os ficheiros zip filhos
+    > Este ficheiro zip contém outros ficheiros zip. Não extraia os ficheiros zip filhos.
 
     A estrutura do diretório deve ficar assim:
 
